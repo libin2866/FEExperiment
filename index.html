@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>test title</title>
+    <link rel="stylesheet" href="style.css" type="text/css" >
 </head>
 <body>
 <div class="test-class">
@@ -14,6 +15,28 @@
 
     <p class="test-p"></p>
 </div>
-<script src="js/DOM.js"></script>
+
+<div class="test-collapse">
+    main container
+    <div class="collapse1">collapse 1</div>
+    <div class="collapse1">collapse 1</div>
+    <div class="collapse1">collapse 1</div>
+    <div class="collapse2">collapse 2</div>
+    <div class="collapse2">collapse 2</div>
+</div>
+
+
+<div class="container">
+    <p>Sibling 1</p>
+    <p>Sibling 2</p>
+    <div class="newBFC"><!--不出现collapse-->
+        <p>Sibling 3</p>
+    </div>
+</div>
+
+
+<!--<script src="js/DOM.js"></script>-->
+<!--<script src="js/jsThisScope.js"></script>-->
+<!--<script src="js/practise.js"></script>-->
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style>
+        .list {
+            width: 340px;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 10px;
+            text-align: justify; /* 左右宽度自适应实现 */
+        }
+        .text {
+            display: inline-block;
+            max-width: 190px;
+            vertical-align: middle;
+            text-align: left;
+        }
+        .list > img {
+            /*display:inline-block;*/
+            vertical-align: middle;
+        }
+        .help {
+            display: inline-block;
+            width: 100%;
+            line-height: 0;
+        }
+    </style>
+</head>
+<body>
+<!--vertical-align works for inline-level and table-cell elements. It also applies to ::first-letter and ::first-line.
+-->
+<div class="list">
+    <span class="text">一行文字</span>
+    <img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg">
+    <i class="help"></i>
+</div>
+<div class="list">
+    <span class="text">一行文字<br>两行文字</span>
+    <img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg">
+
+</div>
+<div class="list">
+    <span class="text">一行文字<br>两行文字<br>三行文字</span>
+    <img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg">
+
+</div>
+<div class="list">
+    <span class="text">一行文字<br>两行文字<br>三行文字<br>四行文字</span>
+    <img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg">
+    <i class="help"></i>
+</div>
+<div class="list">
+    <span class="text">老乔说的内容中，关于用户视距，其实跟姿势关系很大。书本阅读中，坐直的姿势，可能最佳是50cm左右。但是手机移动端用户一种较普遍的是手伸直，背靠着，50cm，还有一种手曲着支撑在椅子上，这时候视距其实说30cm左右。这里姿势不仅是为了眼睛舒服，更多的是手，所以用户说不会拿的很远，远的话，手累。
+</span>
+    <img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg">
+    <i class="help"></i>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> http://www.cnblogs.com/2050/p/3877280.html移动设备-->
+    <title></title>
+    <style>
+        .app-wall {
+            position: relative;
+            vertical-align: bottom;
+        }
+
+        .img-show {
+            display: inline-block;
+
+        }
+
+        .info-text {
+
+            display: block;
+            position: absolute;
+        }
+        .content-grid{
+            display: inline-block;
+        }
+        .box{
+            float: left;
+            border: 1px solid #ededed;
+            width: 100px;
+            height: 100px;
+        }
+        .clear-fix{
+            clear: both;
+        }
+        .general-clear-fix{
+            overflow: auto;
+            zoom:1;/* for IE 6*/
+        }
+    </style>
+</head>
+<body>
+<!--<table>-->
+    <!--<tr>-->
+        <!--<td class='app-wall' colspan='2'>-->
+            <!--<div class="content-grid"><span class='img-show'>  <img-->
+                    <!--src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg"></span>-->
+                <!--<span class='info-text'>普通链接</span>-->
+            <!--</div>-->
+            <!--<div class="content-grid">-->
+                <!--<span class='img-show'>  <img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg"></span>-->
+                <!--<span class='info-text'>应用下载</span>-->
+            <!--</div>-->
+        <!--</td>-->
+    <!--</tr>-->
+<!--</table>-->
+<div class="box">
+    This is a box
+</div>
+<section class="general-clear-fix"><!--存在这个之后，文字就不会变成围绕，而是另起一行了-->
+    This is a section area
+</section>
+</body>
+</html>

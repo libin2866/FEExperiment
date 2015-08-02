@@ -1,0 +1,23 @@
+
+
+.collapse1{
+    margin: 10px 0;
+    border: 1px solid #7f7f7f;
+    overflow: hidden;
+}
+.collapse2{
+    margin: 20px 0;
+    border: 1px solid red;
+    overflow: hidden;
+}
+.container {
+    background-color: red;
+    overflow: hidden; /* creates a block formatting context */
+}
+p {
+    margin: 10px 0;
+    background-color: lightgreen;
+}
+.newBFC {
+    overflow: hidden;  /* creates new block formatting context */
+}
