@@ -43,3 +43,4 @@
     var f = new foo;
     f.bar();
 })();
+
