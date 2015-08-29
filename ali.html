@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .test {
+            margin: 5px 10px 15px 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="test">
+    test
+</div>
+
+<script>
+
+    //    document.getElementsByName('div')[0].dblclick()
+
+    function compareNumbers(a, b) {
+        return b - a;
+    }
+
+    var arr = [1, 2, 3, 4, 5];
+    var result = arr.sort(compareNumbers).join("+");
+
+
+    var numbers = [4, 2, 5, 1, 3];
+    numbers.sort(function (a, b) {
+        return b - a;
+    });
+    console.log(numbers);
+    console.log('other');
+
+    console.log(result);
+
+
+    function isArray(p) {
+        console.log(Object.prototype.toString.apply(p));
+        return Object.prototype.toString.apply(p) === '[object Array]';
+    }
+    console.log(isArray(arr));
+
+
+    function showMoney() {
+//        this.money = arguments[0];
+        return this.money;
+    }
+    var personA = new Object;
+    var personB = new Object;
+
+    personA.money = "100";
+    personB.money = "150";
+
+    personA.showMoney = showMoney;
+    personB.showMoney = showMoney;
+
+
+    //输出结果：
+    console.log(personA.showMoney()); //"100"
+    console.log(personB.showMoney()); //"150"
+
+
+    /**
+     *@desc: fibonacci
+     *@param: count {Number}
+     *@return: result {Number} 第count个fibonacci值，计数从0开始
+     fibonacci数列为：[1, 1, 2, 3, 5, 8, 13, 21, 34 ...]
+     则getNthFibonacci(0)返回值为1
+     则getNthFibonacci(4)返回值为5
+     */
+    function getNthFibonacci(count) {
+//        if (count > 0) {
+            return ( count <= 1 ) ? 1 : getNthFibonacci(count - 1) + getNthFibonacci(count - 2);
+//        }else{
+//            return
+//        }
+    }
+    console.log(getNthFibonacci(0));
+    console.log(getNthFibonacci(4));
+    console.log(getNthFibonacci(5));
+
+
+</script>
+</body>
+</html>

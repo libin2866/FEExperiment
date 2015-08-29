@@ -21,3 +21,20 @@ p {
 .newBFC {
     overflow: hidden;  /* creates new block formatting context */
 }
+
+.testFloat{
+    width: 100px;
+    display: inline-block;
+    float: left;
+    height: 100px;
+    background: #ccc;
+}
+.right-pos{
+    background: #ededed;
+    margin-left: 100px;
+    height: 100px;
+}
+
+ul {
+    MaRGin: 10px;/*大小写不敏感！！！*/
+}

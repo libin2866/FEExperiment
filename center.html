@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        .container {
+            background: #ff0000;
+        }
+        h1{
+            font-size: 24px;
+            border-bottom: 1px dashed #ededed;
+        }
+        .lr-center {
+            /*没有设置width时，解释器不知道你的宽度，当然就不会居中，就会到左边去*/
+            display: inline-block;
+            width: 200px;
+            margin: 0 auto;
+            border: 1px solid #ededed;
+            background: #ccc;;
+        }
+
+        .height-container{
+            background-color: #0033cc;
+            width: 300px;
+            text-align: justify; /* 左右宽度自适应实现 */
+        }
+        .ud-center{
+                display:inline-block;
+                background: #fff;
+                vertical-align: middle;
+        }
+        .helper-div{
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+            background: #00ff00;
+            vertical-align: middle;
+        }
+
+
+        .list {
+            width: 340px;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 10px;
+            text-align: justify; /* 左右宽度自适应实现 */
+        }
+        .text {
+            display: inline-block;
+            max-width: 190px;
+            vertical-align: middle;
+            text-align: left;
+        }
+        .list > img {
+            vertical-align: middle;
+        }
+        .help {
+            display: inline-block;
+            width: 100%;
+            line-height: 0;
+        }
+
+
+        .table-cell{
+            display: table-cell;
+            vertical-align: middle;
+            width: 300px;
+            font-size: 10em;
+            background: #0033cc;
+        }
+        .table-cell span.inner-span{
+            display:inline-block;
+            font-size: 0.1em;
+            vertical-align: middle;
+        }
+
+    </style>
+</head>
+<body>
+<h1>左右居中方法一：margin auto  设置宽度的方法</h1>
+<div class="container ">
+    <div class="lr-center">
+        This should be center;<br/>
+        文字要换行
+    </div>
+
+</div>
+
+<h1>上下居中方法：将里面元素设置为inline-block，利用vertical-align</h1>
+<div class="container height-container">
+    <span class="ud-center">
+        This is the text;<br/>
+        文字要换行
+    </span>
+    <div class="helper-div">
+        this is a helper div
+    </div>
+</div>
+
+<div class="list">
+    <span class="text">一行文字</span>
+    <img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg">
+    <i class="help"></i>
+</div>
+
+<div class="container">
+    <div class="table-cell">
+        <span class="table-cell inner-span">This is the text!</span>
+    </div>
+</div>
+
+</body>
+</html>

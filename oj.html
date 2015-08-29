@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    /**
+     * 找出元素 item 在给定数组 arr 中的位置
+     输出描述:
+     如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1
+
+     输入例子:
+     indexOf([ 1, 2, 3, 4 ], 3)
+
+     输出例子:
+     2
+     */
+    function indexOf(arr, item) {
+        for(var i=0;i<arr.length;++i){
+            if (item==arr[i]){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    function indexofx(arr, item){
+        arr.indexOf(item);//indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置，若未找到，则返回-1
+    }
+    console.log(indexOf([ 1, 2, 3, 4 ], 3));
+
+    var person={fname:"John",lname:"Doe",age:25};
+    var txt="";
+    for (x in person)
+    {
+        txt=txt + person[x];
+        console.log(x+" : "+person[x])
+
+    }
+    console.log(txt);
+
+    if(! "a" in window){
+        var a = 1;
+    }
+    if(a in window){
+        console.log('a')
+    }
+    console.log(a);
+
+
+</script>
+
+</body>
+</html>

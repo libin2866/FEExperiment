@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #awesome .favorite:not(#awesome) .highlight {/* why ?*/
+            color: red;
+        }
+        #awesome .favorite .highlight {
+            color: blue;
+        }
+
+        #example{
+            margin-left: -5px;/*左移5px*/
+            margin-bottom: -5px;/*下方元素上移5px*/
+        }
+
+        #i-am-useless {/* unused style resources eg this img 不会被浏览器下载？*/
+            background-image: url('mypic.jpg');
+        }
+
+        div {
+            overflow: hidden;
+        }
+        p {
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+<ul class="shopping-list" id="awesome">
+    <li><span>Milk</span></li>
+    <li class="favorite" id="must-buy"><span class="highlight">Sausage</span></li>
+</ul>
+
+<p id="example">
+    test margin
+</p>
+<div >content</div>
+
+
+
+<div>
+    <p>I am floated</p>
+    <p>So am I</p>
+</div>
+
+
+
+<!--Does overflow: hidden create a new block formatting context?YES!-->
+
+<!--<script>-->
+<!--//    请用JavaScript实现一个输入框，可以根据用户的输入，来实时向服务器请求，并给出搜索的结果，主要功能点要求，需要考虑一些性能优化-->
+    <!--var e = document.createElement('input');-->
+    <!--e.type = 'text';-->
+<!--e.onkeydown = function (key) {-->
+    <!--console.log(key);-->
+<!--}-->
+    <!--document.body.appendChild(e);-->
+<!--</script>-->
+</body>
+</html>

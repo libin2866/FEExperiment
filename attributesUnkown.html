@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .absolute-inline {
+            position: absolute;
+            width: 100px;
+        }
+
+        .inline-elem {
+            width: 100px; /*doesn't work*/
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <span class="absolute-inline">行内元素设置position fixed/absolute 变成block</span>
+</div>
+<span class="inline-elem">行内元素设置position fixed/absolute 变成block</span>
+<script>
+    console.log(null == undefined, NaN == NaN, {} == {}, null === undefined, NaN === NaN, {} === {})
+
+    console.info('typeof会把所有的数组类型以及用户自定义类型判断为object，从而无法知道更确切的信息。而constructor却可以解决这个问题。')
+    //typeof 返回 number,boolean,string,object,undefined,function.语法为typeof(data) 或 typeof data
+    //instanceof则为判断一个对象是否为某一数据类型，或一个变量是否为一个对象的实例;返回boolean类型
+    //语法为 o instanceof A
+    var i;
+    console.log(typeof(i));//undefined
+    //    console.log(i.constructor);//返回错误 Uncaught TypeError: Cannot read property 'constructor' of undefined
+
+    console.info('Array')
+    var arr = [],arr2 = new Array(1,2,3);
+    console.log(typeof(arr));//object
+    console.log(typeof(arr2));//object
+    console.log(arr instanceof Array);//true
+    console.log(arr2 instanceof Array);//true
+    console.log(arr.constructor);//function array(){[native code]}
+    console.log(arr2.constructor);//function array(){[native code]}
+
+    console.info('String type')
+    var str = 'this is a string', strObj = new String('this is a objString');
+    console.log(typeof(str));//string
+    console.log(str instanceof  String);//false!!!
+    console.log(strObj instanceof  String);//true
+    console.log(typeof(strObj));//object
+    console.log(str.constructor);//function String() { [native code] }
+    console.log(strObj.constructor);//function String() { [native code] }
+
+
+    console.info('Function')
+    var myFunc = function () {
+    };
+    var myFunc2 = new Function();
+    console.log(typeof myFunc);//function
+    console.log(typeof myFunc2);//function
+    console.log(myFunc instanceof  Function);//true
+    console.log( myFunc2 instanceof  Function);//true
+    console.log(myFunc.constructor);//function Function() { [native code] }
+    console.log(myFunc2.constructor);//function Function() { [native code] }
+
+
+//    3、字符串连接
+//    如果要连接多个字符串，应该少使用+=，如
+//    s+=a;
+//    s+=b;
+//    s+=c;
+//    应该写成s+=a + b + c；
+//    而如果是收集字符串，比如多次对同一个字符串进行+=操作的话，最好使用一个缓存，使用JavaScript数组来收集，最后使用join方法连接起来
+//    var buf = [];        for (var i = 0; i < 100; i++) {
+//        buf.push(i.toString());
+//    }        var all = buf.join("");
+//
+//    var xmlhttp=null;
+//    if(window.XMLHttpRequest){
+//        xmlhttp = new XMLHttpRequest();
+//    }else{
+//        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+//    }
+////    xmlhttp.onreadystatechange
+//    xmlhttp.open('GET',"demo.php",true);
+//    xmlhttp.send();
+
+    var name = 'window';
+    var obj = {
+        name: 'obj',
+        child: {
+            name: 'child',
+            getName: function () {
+                return this.name;
+            } }
+    };
+    var getName = obj.child.getName;
+    var myname = obj.child.getName();
+    console.log(getName());
+    console.log(myname);
+
+</script>
+</body>
+</html>

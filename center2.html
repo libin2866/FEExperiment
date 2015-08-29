@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .container{
+            height: 800px;
+            width: 800px;
+            position: relative;
+            background: #dddddd;
+            border: 1px solid #ededed;
+        }
+        /*若知道块状元素的高度和宽度*/
+        /*方法一：*/
+        .center-known-div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 500px;
+            height: 400px;
+            margin-left: -250px;
+            margin-top: -200px;
+        }
+
+        /*方法二: */
+        .center-known-div2{
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 500px;
+            height: 400px;
+            transform: translate(-50%, -50%);
+        }
+
+        /*方法三：*/
+        .center-known-div3
+        {
+            position: absolute;
+            width: 500px;
+            height: 400px;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        /*若不知道块状元素的高度和宽度*/
+
+        .flexbox-container {
+            display: -ms-flex;
+            display: -webkit-flex;
+            display: flex;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+
+
+        .il-block{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+        }
+        .bg-color{
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="center-known-div3 bg-color">-->
+    <!--test-->
+<!--</div>-->
+
+<div class="flexbox-container">
+    <div class="il-block bg-color" >This is a test </div>
+</div>
+
+</body>
+</html>

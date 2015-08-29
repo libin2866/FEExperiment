@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+    var animal = function () {
+
+    };
+    animal.prototype.live = function () {
+        console.log('living');
+    }
+    var dog = new animal();
+    dog.bark = function () {
+        console.log('bark');
+    }
+
+    dog.bark();
+    dog.live();
+
+    function cat() {
+        this.bark = function () {
+            console.log('mew')
+        }
+    }
+    cat.prototype = new animal();
+    var bosi = new cat();
+    bosi.bark();
+    bosi.live();
+
+    function Parent() {
+
+        this.sayAge = function () {
+            console.log(this.age);
+        }
+    }
+
+    Parent.prototype.sayParent = function () {
+        console.log("this is parentmethod!!!");
+    }
+
+    function Child(firstname) {
+//        Parent.call(this);
+        this.fname = firstname;
+        this.age = 40;
+        this.saySomeThing = function () {
+            console.log(this.fname);
+            this.sayAge();
+        }
+    }
+
+    Child.prototype = new Parent();
+    var child = new Child("张");
+    child.saySomeThing();
+    child.sayParent();
+
+    function removeSame(arr) {
+        var map = {}, newArr = [];
+        for (var i = 0; i < arr.length; ++i) {
+            if (!map[arr[i]]) {
+                map[arr[i]] = 1;
+                newArr.push(arr[i])
+            }
+        }
+        console.log(map);
+        return newArr;
+    }
+    console.log(removeSame([1, 2, 2, 3, 4, 4, 5]))
+
+
+
+
+</script>
+</body>
+</html>

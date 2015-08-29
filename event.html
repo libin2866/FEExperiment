@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        a {
+            display: block;
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #ccc;
+            margin-left: 20px;
+        }
+
+        td {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="gaga">
+    <a href="#" gaga="xixi">1</a>
+    <a href="#">10</a>
+    <a href="#">100</a>
+    <a href="#">1000</a>
+    <a href="#">10000</a>
+    <a href="#">100000</a>
+    <a href="#">1000000</a>
+    <a href="#">10000000</a>
+    <a href="#">100000000</a>
+    <a href="#">1000000000</a>
+    <a href="#">10000000000</a>
+    <a href="#">100000000000</a>
+</div>
+<table border="1">
+    <caption>事件代理demo</caption>
+    <thead>
+    <td>title</td>
+    <td>desc</td>
+    <td>other</td>
+    </thead>
+    <tr>
+        <td>测试1</td>
+        <td>desc1</td>
+        <td>no other1</td>
+    </tr>
+    <tr>
+        <td>测试2</td>
+        <td>desc2</td>
+        <td>no other2</td>
+    </tr>
+    <tr>
+        <td>测试3</td>
+        <td>desc3</td>
+        <td>no other3</td>
+    </tr>
+</table>
+<p>
+    不是所有的事件都能冒泡的。blur、focus、load和unload不能像其它事件一样冒泡。事实上blur和focus可以用事件捕获而非事件冒泡的方法获得（在IE之外的其它浏览器中）。
+    在管理鼠标事件的时候有些需要注意的地方。如果你的代码处理mousemove事件的话你遇上性能瓶颈的风险可就大了，因为mousemove事件触发非常频繁。而mouseout则因为其怪异的表现而变得很难用事件代理来管理。
+</p>
+<script>
+    var gaga = document.getElementById("gaga");
+    gaga.onclick = function (e) {
+        var e = e || window.event;
+        var Target = e.srcElement || e.target;      // srcElement这个只是支持firefox
+
+//        alert( Target.tagName);
+        if (Target.tagName.toUpperCase() == "A") {//通过判断其点击的对象的特定属性
+            alert(Target.innerHTML);
+        }
+        ;
+        return false;   //  防止跳转
+    };
+
+    var myTable = document.getElementsByTagName('table')[0];
+    myTable.onclick = function (e) {
+        var e = e||window.event;
+        var target = e.srcElement|| e.target;
+//        alert(target.tagName)
+        console.log(target);
+        if(target.tagName == 'TD'){
+            alert(target.innerHTML);
+        }
+    }
+
+</script>
+
+</body>
+</html>
