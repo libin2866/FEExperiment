@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .test {
+            background: #ededed;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+
+<div class="test">
+
+</div>
+
+<script>
+
+    var ul = document.getElementsByTagName("ul")[0];
+    var docfrag = document.createDocumentFragment();
+    var browserList = ["Internet Explorer", "Mozilla Firefox", "Safari", "Chrome", "Opera"];
+
+    browserList.forEach(function (e) {
+        var li = document.createElement("li");
+        li.textContent = e;
+        docfrag.appendChild(li);
+    });
+
+    ul.appendChild(docfrag);
+
+    //replaceChid(newOp,targetOp);将目标节点targetOp替换为newOp
+    //removeChild(oP);
+    //createTextNode('text');
+    //createElement('tagName');
+
+    /**
+     * 如何获得⼀一个DOM元素的绝对位置
+     */
+    function getAbsolutePos(target) {
+        var top = -1, left = -1;
+        if (target.nodeType == 1) {//元素节点
+            top = target.offsetHeight + target.offsetTop;
+            left = target.offsetWidth + target.offsetLeft;
+        }
+        return {top: top, left: left};
+    }
+    console.log(getAbsolutePos(document.getElementsByClassName('test')[0]));
+
+
+    /**
+     *如何⽤用JS⽣生成表格
+     */
+    function createTable(target) {
+        var tar = target || window.document.body;
+        var table = document.createElement('table');
+        table.id = 'testTable'
+        var content = "<tr><td>my table</td></tr><tr><td>new</td></tr>";
+        table.innerHTML = content;
+        var td = document.createElement('td');
+        td.innerHTML = 'createdTd';
+//        table.appendChild(td);
+        tar.appendChild(table);
+    }
+    createTable(document.getElementsByClassName('teste')[0]);
+
+    /**
+     * 假设有一个4行td的table,将table⾥里⾯面td顺序颠倒
+     */
+
+    function reverseTd(target) {
+        console.log(target);
+        var td =target.insertRow(0);
+        td = Array.prototype.slice.call(target.rows);
+        console.log(td+"");
+        target.rows=td;
+        return target.rows;
+//        target.appendChild();
+    }
+
+    console.log(reverseTd(document.getElementById("testTable")));
+
+
+    //实现insertAfter()方法
+    function theirInsertAfter(newElement, targetElement) {
+        var parent = targetElement.parentNode;
+        if (parent.lastChild == targetElement) { // 如果最后的节点是目标元素，则直接添加。因为默认是最后
+            parent.appendChild(newElement);
+        }
+        else {//如果不是，则插入在目标元素的下一个兄弟节点 的前面。也就是目标元素的后面
+            parent.insertBefore(newElement, targetElement.nextSibling);
+        }
+    }
+    function insertAfter(newElem, targetElem) {
+        var parent = targetElem.parentNode;
+        if (parent.lastChild == targetElem) {
+            parent.appendChild(newElem);
+        } else {
+            parent.insertBefore(newElement, targetElement.nextSibling);
+        }
+    }
+
+    var testNum = 123.456;
+    var numObj = new Number(12.2334);
+
+    console.log(testNum.toFixed(2) + ' : ' + typeof  testNum);
+    console.log(numObj.toFixed(2) + ' : ' + typeof  numObj);
+
+    console.log((function (a, b) {
+    }));
+    var arrT = [1, 2, 3];
+    arrT.splice(1, 1, 2, 3, 4);
+    console.log(arrT);
+
+    var foo = 1;
+    function main() {
+        console.log(foo);
+        var foo = 2;
+        console.log(this.foo);
+        this.foo = 3;
+    }
+    main();//undefined,1
+    new main();//undefined,undefined
+
+
+    var newfoo = {
+        hasOwnProperty: function () {
+            return false;
+        },
+        bar: 'Here be dragons'
+    };
+    newfoo.hasOwnProperty('bar'); // always returns false
+    // Use another Object's hasOwnProperty and call it with 'this' set to foo
+    ({}).hasOwnProperty.call(newfoo, 'bar'); // true
+    // It's also possible to use the hasOwnProperty property from the Object prototype for this purpose
+    Object.prototype.hasOwnProperty.call(newfoo, 'bar'); // true
+
+</script>
+</body>
+</html>

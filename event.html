@@ -55,14 +55,15 @@
         <td>no other2</td>
     </tr>
     <tr>
-        <td>测试3</td>
+        <td class="td-class">测试3</td>
         <td>desc3</td>
         <td>no other3</td>
     </tr>
 </table>
 <p>
     不是所有的事件都能冒泡的。blur、focus、load和unload不能像其它事件一样冒泡。事实上blur和focus可以用事件捕获而非事件冒泡的方法获得（在IE之外的其它浏览器中）。
-    在管理鼠标事件的时候有些需要注意的地方。如果你的代码处理mousemove事件的话你遇上性能瓶颈的风险可就大了，因为mousemove事件触发非常频繁。而mouseout则因为其怪异的表现而变得很难用事件代理来管理。
+    在管理鼠标事件的时候有些需要注意的地方。如果你的代码处理mousemove事件的话你遇上性能瓶颈的风险可就大了，因为mousemove事件触发非常频繁。
+    而mouseout则因为其怪异的表现而变得很难用事件代理来管理。
 </p>
 <script>
     var gaga = document.getElementById("gaga");
@@ -73,8 +74,7 @@
 //        alert( Target.tagName);
         if (Target.tagName.toUpperCase() == "A") {//通过判断其点击的对象的特定属性
             alert(Target.innerHTML);
-        }
-        ;
+        };
         return false;   //  防止跳转
     };
 
@@ -87,6 +87,9 @@
         if(target.tagName == 'TD'){
             alert(target.innerHTML);
         }
+       if( target.className == "td-class"){
+           alert(target.innerHTML);
+       }
     }
 
 </script>
