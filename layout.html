@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        .box {
+            position: relative;
+            height: 300px;
+            width: 300px;
+            border: 1px solid #ededed;
+        }
+
+        .content {
+            margin-left: 150px;
+            background: #ff9900;
+        }
+
+        .sider1 {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: #74c0f9;
+            top: 0;
+            text-align: center;
+            display: inline-block;
+            /*line-height: 150px;*/
+            vertical-align: middle;
+        }
+
+        .inner {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /*.box:before {*/
+            /*content: '.';*/
+            /*display: inline-block;*/
+            /*vertical-align: middle;*/
+            /*height: 100%;*/
+        /*}*/
+
+        .sider1:hover {
+            /*-webkit-transform: scale(1.5, 1.5);*/
+            /*-moz-transform: scale(0.5, 0.5);*/
+            /*-ms-transform: scale(0.5, 0.5);*/
+            /*-o-transform: scale(0.5, 0.5);*/
+            /*transform: scale(1.5, 1.5);*/
+            height: 200px;
+            width: 200px;;
+            z-index: 100;
+            background: #00ff00;
+        }
+
+        .sider2 {
+            position: absolute;
+            top: 150px;
+            /*border: 1px solid #0033cc;*/
+            width: 150px;
+            height: 50px;
+            background: #ededed;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="content">
+        This is content I know
+    </div>
+
+        <div class="sider1">
+             <span class="inner"> This is sider1This is sider1This is sider1This is sider1This is sider1</span>
+        </div>
+    <div class="sider2">This is sider2</div>
+</div>
+
+<div class="box">
+    <div class="content2">This is content I know</div>
+    <div class="sidera">This is sider1</div>
+    <div class="siderb">This is sider2</div>
+</div>
+<scipt>
+
+</scipt>
+</body>
+</html>
