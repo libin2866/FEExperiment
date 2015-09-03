@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript 68个方法有效办法</title>
+</head>
+<body>
+
+<article>
+    <section>
+        <h2>对象和原型</h2>
+
+        <p class="content">
+            C.prototype 用于建立由new C()创建的对象的原型<br/>
+            Object.getPrototypeof(obj)是ES5中用来获取obj 对象的原型对象的标准方法<br/>
+            obj.__proto__是获取obj 对象的原型对象的非标准方法<br/>
+            类是由一个构造函数与一个关联的原型组成的一种设计模式
+        </p>
+    </section>
+
+</article>
+<script>
+    function User(name) {
+        this.name = name;
+    }
+    User.prototype.toString = function () {
+        return "user:" + this.name;
+    }
+    var u = new User('test');
+
+    Object.getPrototypeOf(u) === User.prototype;//true  ES5之后有getPropertypeof
+    u.__proto__ === User.prototype;//true 不支持ES5的权益之计
+    //null 对象没有__proto__
+    /**
+     * 在不支持ES5的环境中实现getPrototypeof()
+     *
+     */
+    (function () {
+        if (typeof Object.getPrototypeOf === "undefined") {
+            Object.getPrototypeOf = function (obj) {
+                var t = typeof(obj);
+                if (!obj || (t !== "object" && t !== "function")) {//主要为了避免传入不是object 的情况
+                    throw new TypeError("not an object");
+                }
+                return obj.__proto__;
+            }
+        }
+    })();
+
+
+</script>
+</body>
+</html>

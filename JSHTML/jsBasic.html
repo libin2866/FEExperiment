@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    var dict = 1;
+    dict.hasOwnProperty = 1;
+    console.log(dict.hasOwnProperty('foo'));
+
+    /**
+     * arguments to array
+     */
+    console.info('-------------arguments to array---------------')
+    function argumentsToArray() {
+
+        return Array.prototype.slice.call(arguments, 0);
+
+    }
+    console.log(typeof  argumentsToArray());
+    console.log(typeof  argumentsToArray(1, 2));
+    console.log(argumentsToArray(1, 2));
+    /**
+     * Arrary -- shift--前面移动一位，返回第一位【0】  POP则是后面pop 出
+     */
+    console.info('-------------shift---------------');
+    var arrShift = [1, 2, 3, 4];
+    arrShift.shift();
+    console.log(arrShift);
+    /**
+     * Iterator
+     *  var it =values(1,2,3,4,5,6,7);
+     it.next();//2
+     it.next();//3
+     it.next();//4
+     */
+
+    function values() {
+
+        this.pos = 0;
+        var self = this;
+        var args = arguments;
+
+        return {
+            arguments: arguments,
+//            pos: self.pos,
+            next: function () {
+                return args[++self.pos];//！！！不能直接用arguments 对象因为这里的arguments 对象是next 的
+            }
+        }
+
+    }
+    var it = new values(1, 2, 3, 4, 5, 6, 7);
+    console.log(it);
+    console.log(it.next);
+    console.log(it.next());
+
+    /**
+     * 金钱+,分割
+     */
+
+
+</script>
+</body>
+</html>
