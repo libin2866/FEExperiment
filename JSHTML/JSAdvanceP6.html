@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+    console.info("--------数据属性-----------");
+    var person = {
+        name: "test",
+        age: 24
+    };
+    Object.defineProperty(person, "name", {
+        writable: false,
+        enumerable: false,
+        configurable: false
+    })
+
+    function enumerate(obj) {
+        for (var i in obj) {
+            console.log(i + " : " + obj[i]);
+        }
+    }
+    person.name = "new";
+    console.log(person.name = "new");//return new
+    console.log(person.name);//test
+    enumerate(person);//只有 age=24;
+
+    /**
+     * 查看属性设置
+     */
+    console.log(Object.getOwnPropertyDescriptor(person,'name'))
+
+    console.info("--------访问器属性-----------");
+    var book = {
+        _year: 2004,
+        edition: 1
+    }
+    Object.defineProperty(book, "year", {
+        get: function () {
+            return this._year;
+        },
+        set: function (year) {
+            this._year = year;
+        }
+    })
+    book.year = 2005;
+    console.log(book._year);
+    console.log(Object.getOwnPropertyDescriptor(book,'_year'));
+    console.log(Object.getOwnPropertyDescriptor(book,'year'));
+
+
+
+</script>
+</body>
+</html>
