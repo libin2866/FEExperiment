@@ -59,6 +59,12 @@
     console.log(it.next);
     console.log(it.next());
 
+    var data = {a: 1, b: 2, c: 3, d: 4};
+    console.log(Object.keys(data).filter(function(x) { return data[x]>2?x:""}) instanceof  Array);
+
+    //todo
+    //white-spacing &&word-break
+
     /**
      * 金钱+,分割
      */

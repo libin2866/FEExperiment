@@ -166,20 +166,20 @@
     })();
     console.log(typeof f);//逗号表达式
 
-
-    function obj(name){
-        if(name){
-            this.name = name;
-        }
-        return this;
-    }
-    obj.prototype.name = "name2";
-    var a = obj("name1");
-    var b = new obj;
-
-    console.log(a.name); // name1
-    console.log(window.name); // name1
-    console.log(b.name); // name2
+//
+//    function obj(name){
+//        if(name){
+//            this.name = name;
+//        }
+//        return this;
+//    }
+//    obj.prototype.name = "name2";
+//    var a = obj("name1");
+//    var b = new obj;
+//
+//    console.log(a.name); // name1
+//    console.log(window.name); // name1
+//    console.log(b.name); // name2
 
     //一般函数直接调用，默认this执行全局window|global
     //通过obj('name1')调用，返回this引用，并传给a, 此时a等于window对象，即可输出属性name值
@@ -189,51 +189,51 @@
     //所以，现在实例name属性提供给a使用，原型上的name提供给b使用。
 
     //两个变体
-    function obj(name){
-        //if(name){
-        this.name = name;
-        //}
-        return this;
-    }
-    obj.prototype.name = "name2";
-    var a = obj("name1");
-    var b = new obj;
+//    function obj(name){
+//        //if(name){
+//        this.name = name;
+//        //}
+//        return this;
+//    }
+////    obj.prototype.name = "name2";
+//    var a = obj("name1");
+//    var b = new obj;
+//
+//    console.log(a.name);//name1
+//    console.log(window.name);//name1
+//    console.log(b.name);//undefined
+//    // 这时b实例已经有属性name，但参数name为undefined ,所以
+//    // 这时可以把，this.name属性删掉，这样就能去原型找name了
+//    function obj(name){
+//        //if(name){
+//        this.name = name;
+//        //}
+//        return this;
+//    }
+//    obj.prototype.name = "name2";
+//    var a = obj("name1");
+//    var b = new obj;
+//
+//    console.log(a.name);//name1
+//    console.log(window.name);//name1
+//    delete b.name;
+//    console.log(b.name);//name2
 
-    console.log(a.name);//name1
-    console.log(window.name);//name1
-    console.log(b.name);//undefined
-    // 这时b实例已经有属性name，但参数name为undefined ,所以
-    // 这时可以把，this.name属性删掉，这样就能去原型找name了
-    function obj(name){
-        //if(name){
-        this.name = name;
-        //}
-        return this;
-    }
-    obj.prototype.name = "name2";
-    var a = obj("name1");
-    var b = new obj;
-
-    console.log(a.name);//name1
-    console.log(window.name);//name1
-    delete b.name;
-    console.log(b.name);//name2
-
-
-    // 再试试 new obj('myName') 传个参数
-    function obj(name){
-        //if(name){
-        this.name = name;
-        //}
-        return this;
-    }
-    obj.prototype.name = "name2";
-    var a = obj("name1");
-    var b = new obj('myName');
-
-    console.log(a.name);//name1
-    console.log(window.name);//name1
-    console.log(b.name);//myName
+//
+//    // 再试试 new obj('myName') 传个参数
+//    function obj(name){
+//        //if(name){
+//        this.name = name;
+//        //}
+//        return this;
+//    }
+//    obj.prototype.name = "name2";
+//    var a = obj("name1");
+//    var b = new obj('myName');
+//
+//    console.log(a.name);//name1
+//    console.log(window.name);//name1
+//    console.log(b.name);//myName
 
 
     /**
@@ -241,20 +241,33 @@
      * @type {Element}
      */
 
-    var el = window.document.getElementById("a");
-    el.onclick = function (e) {
-        //如果提供了事件对象，则这是一个非IE浏览器
-        if (e && e.stopPropagation) {
-            //因此它支持W3C的stopPropagation()方法
-            e.stopPropagation();
-        }
-        else {
-            //否则，我们需要使用IE的方式来取消事件冒泡
-            window.event.cancelBubble = true;
-            return false;
-        }
-    }
+//    var el = window.document.getElementById("a");
+//    el.onclick = function (e) {
+//        //如果提供了事件对象，则这是一个非IE浏览器
+//        if (e && e.stopPropagation) {
+//            //因此它支持W3C的stopPropagation()方法
+//            e.stopPropagation();
+//        }
+//        else {
+//            //否则，我们需要使用IE的方式来取消事件冒泡
+//            window.event.cancelBubble = true;
+//            return false;
+//        }
+//    }
 
+    var x = new Boolean(false);
+    if (x) {
+        alert('hi');
+    }
+    console.log(x);
+    var y = Boolean(0);
+    if (y) {
+        alert('hello');
+    }
+    /**
+     * 关于禁用cookie
+     * 禁用cookie
+     */
 
 </script>
 </body>

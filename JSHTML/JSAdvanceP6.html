@@ -27,7 +27,7 @@
     person.name = "new";
     console.log(person.name = "new");//return new
     console.log(person.name);//test
-    enumerate(person);//只有 age=24;
+    enumerate(person);//只有 age=24;name没有枚举出来，跟下面的new 形成区别
 
     /**
      * 查看属性设置
@@ -51,6 +51,72 @@
     console.log(book._year);
     console.log(Object.getOwnPropertyDescriptor(book,'_year'));
     console.log(Object.getOwnPropertyDescriptor(book,'year'));
+
+    console.info("--------hasOwnProperty----------");
+    function Person(){
+
+    }
+    Person.prototype.name = "Proto's name";
+    Person.prototype.age = 24;
+    var per1 = new Person();
+    per1.height = 1.66;
+    per1.name = "per1";
+
+    console.log(per1.hasOwnProperty('height'));//true
+    console.log(per1.hasOwnProperty('name'));//true 1修改了自身的属性之后，返回的也是true
+    console.log(per1.hasOwnProperty('age'));//false
+
+    Object.defineProperty(per1,"name",{
+        enumerable:false
+    });
+    console.log(Object.getOwnPropertyDescriptor(per1,"name"));
+
+    enumerate(per1);//实例属性会返回！！！
+
+   /**
+    * 得到所有可枚举的属性
+    */
+    var keys = Object.keys(Person.prototype);
+    console.log(keys);//["name", "age"]
+    var key1 = Object.keys(per1);
+    console.log(key1);//["height"]
+    /**
+     * 要得到所有实例属性(无论是否可枚举)
+     */
+    var key2 = Object.getOwnPropertyNames(Person.prototype);
+    console.log(key2);//["constructor", "name", "age"]
+
+
+    console.info("-----compare---");
+    var myObj1 ={
+        name:"testName",
+        age:10
+    }
+    function Test(){
+//        this.name = "test";
+//        this.age = 20;
+    }
+    Test.prototype.name = "testName2";
+    Test.prototype.age = 10;
+    var myObj2 =new Test();
+    myObj2.name = "newNAme";
+    console.log(myObj2);
+    Object.defineProperty(myObj1,"name",{
+        enumerable:false
+    });
+
+    Object.defineProperty(myObj2,"name",{
+        enumerable:false,
+        value:"testerIn"
+    });
+    console.log(myObj1);
+    enumerate(myObj1);
+    console.log('---divider--myObj2-');
+    console.log(myObj2);
+    console.log(myObj2.hasOwnProperty("name"));//true
+    console.log(Object.getOwnPropertyDescriptor(myObj2,"name"));//默认开发人员定义的属性是可枚举的,即使原型中enumerable是false？
+    enumerate(myObj2);
+
 
 
 
