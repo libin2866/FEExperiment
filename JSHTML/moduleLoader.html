@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>从零开始构建模块加载器</title>
+</head>
+<body>
+
+<script>
+    /**
+     * 最开始的时候，会污染全局作用域
+     */
+    (function() {//最开始
+                var week = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+                function weekDay(num){
+                    return week[num];
+                }
+                console.log(week[2]);
+    })();
+    /**
+     * 将week 放到func 中
+     */
+    (function() {
+
+               var weekDay= function (num){
+                    var week = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+
+                    return {
+                        name: function () {
+                             return  week[num];
+                            },
+                        num: function () {
+                            return week.indexOf(name);
+                            }
+                    }
+                }
+                console.log(weekDay.name[2]);
+                console.log(weekDay.num['Wednesday']);
+    })();
+    /**
+     * 进一步改进，加入export 来暴露公共接口
+     */
+    (function () {
+                var weekday={};
+                (function (exports) {
+                    var week = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+                    exports.name = function (num) {
+                        return week[num];
+                    }
+                    exports.num = function (name) {
+                        return week.indexOf(name);
+                    }
+                })(weekday);
+                console.log(weekday.name(2));
+                console.log(weekday.num('Thursday'));
+    })();
+
+    /**
+     * 还可以改进--使用require
+     */
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /**
+     * 嵌套的数组整平
+     */
+    var arr = [1, [2, 3], [4, 5, 6, [7, 8, [9, 10]]], 11];
+    function flatenArray(arr) {
+//        var str = arr.toString();
+//        var temp = str.split(',');
+//        return temp;
+        return arr.toString().split(',');
+    }
+    console.log(flatenArray(arr));
+    console.log(arr.constructor == Array);
+    console.log(arr instanceof Array);
+    console.log(Object.prototype.toString.call(arr) == '[object Array]');
+
+    var arrx =[1,2,3];
+   console.log( arrx.splice(1,0,'a','b','c'));//[1,'a','b','c',0])
+    console.log(arrx);
+//    删除:
+    console.log(     arrx.splice(1,1))//[1,'b','c',0])
+    console.log(arrx);
+
+    //    ####slice
+//    裁剪字符串  array.slice(start,[end]);
+    console.log(arrx.slice(1,2))//['b','c'];
+   console.log(arrx);
+
+    function removeDuplicate(arr){
+        var obj ={},newArr=[];
+        for(var i =0;i<arr.length;++i){
+            if(!obj[arr[i]]){
+                obj[arr[i]]=1;
+                newArr.push(arr[i]);
+            }
+        }
+        return newArr;
+    }
+
+    console.log(removeDuplicate([1,2,2,3,4,5,5,6]))
+
+</script>
+</body>
+</html>

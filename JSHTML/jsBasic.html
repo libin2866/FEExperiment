@@ -17,9 +17,7 @@
      */
     console.info('-------------arguments to array---------------')
     function argumentsToArray() {
-
         return Array.prototype.slice.call(arguments, 0);
-
     }
     console.log(typeof  argumentsToArray());
     console.log(typeof  argumentsToArray(1, 2));
@@ -60,7 +58,9 @@
     console.log(it.next());
 
     var data = {a: 1, b: 2, c: 3, d: 4};
-    console.log(Object.keys(data).filter(function(x) { return data[x]>2?x:""}) instanceof  Array);
+    console.log(Object.keys(data).filter(function (x) {
+                return data[x] > 2 ? x : ""
+            }) instanceof  Array);
 
     //todo
     //white-spacing &&word-break
@@ -68,6 +68,30 @@
     /**
      * 金钱+,分割
      */
+
+
+    /**
+     * html防注入
+     */
+    (function (exports, doc) {
+        var dom = doc.createElement('textarea');
+
+        exports.encode = function (raw) {
+            dom.innerHTML = raw;
+            return dom.innerHTML;
+        }
+        exports.decode = function (str) {
+            dom.innerHTML = str;
+            return dom['innerText' in dom ? 'innerText' : 'textContent'];
+        }
+    }(window.htmlEncoder = {}, document));
+
+    //  console.log(typeof '2e+2');
+    //    var aaaa= 3e+30;
+    //    aaaa++;
+    //    console.log(aaaa)
+
+
 
 
 </script>

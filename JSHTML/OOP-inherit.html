@@ -7,126 +7,126 @@
 <body>
 
 <script>
-    /*
-     var animal = function () {
 
-     };
-     animal.prototype.live = function () {
-     console.log('living');
-     }
-     var dog = new animal();
-     dog.bark = function () {
-     console.log('bark');
-     }
+    var animal = function () {
 
-     dog.bark();
-     dog.live();
-
-     function cat() {
-     this.bark = function () {
-     console.log('mew')
-     }
-     }
-     cat.prototype = new animal();
-     var bosi = new cat();
-     bosi.bark();
-     bosi.live();
-
-     function Parent() {
-
-     this.sayAge = function () {
-     console.log(this.age);
-     }
-     }
-
-     Parent.prototype.sayParent = function () {
-     console.log("this is parentmethod!!!");
-     };
-
-     function Child(firstname) {
-     //        Parent.call(this);
-     this.fname = firstname;
-     this.age = 40;
-     this.saySomeThing = function () {
-     console.log(this.fname);
-     this.sayAge();
-     }
-     }
-
-     Child.prototype = new Parent();
-     var child = new Child("张");
-     child.saySomeThing();
-     child.sayParent();
-
-     function removeSame(arr) {
-     var map = {}, newArr = [];
-     for (var i = 0; i < arr.length; ++i) {
-     if (!map[arr[i]]) {
-     map[arr[i]] = 1;
-     newArr.push(arr[i])
-     }
-     }
-     console.log(map);
-     return newArr;
-     }
-     console.log(removeSame([1, 2, 2, 3, 4, 4, 5]))
-
-     */
-    function Parent1(name, age) {
-        this.name = name;
-        this.age = age;
-        this.height = 180;
-    }
-    Parent1.prototype.say = function () {
-        console.log('hi...');
     };
-    function Parent2(name, age, weight) {
-        this.name1 = name;
-        this.weight = weight;
-        this.height = 170;
-        this.skin = 'yellow';
+    animal.prototype.live = function () {
+        console.log('living');
     }
-    Parent2.prototype.walk = function () {
-        console.log('walk...');
+    var dog = new animal();
+    dog.bark = function () {
+        console.log('bark');
+    }
+
+    dog.bark();
+    dog.live();
+
+    function cat() {
+        this.bark = function () {
+            console.log('mew')
+        }
+    }
+    cat.prototype = new animal();
+    var bosi = new cat();
+    bosi.bark();
+    bosi.live();
+
+    function Parent() {
+
+        this.sayAge = function () {
+            console.log(this.age);
+        }
+    }
+
+    Parent.prototype.sayParent = function () {
+        console.log("this is parentmethod!!!");
     };
 
-    function Child(name, age, weight) {
-        Parent1.call(this, name, age);
-        Parent2.call(this, name, age, weight);
+    function Child(firstname) {
+        //        Parent.call(this);
+        this.fname = firstname;
+        this.age = 40;
+        this.saySomeThing = function () {
+            console.log(this.fname);
+            this.sayAge();
+        }
     }
 
-    for (var i in Parent1.prototype) {
-        console.log(Parent1.prototype[i]);
-        Child.prototype[i] = Parent1.prototype[i];
-    }
-    for (i in Parent2.prototype) {
-        console.log(Parent2.prototype[i]);
-        Child.prototype[i] = Parent2.prototype[i]
-    }
+        Child.prototype = new Parent();
+    // Child.prototype.constructor = Parent;
+    var child = new Child("张");
+    child.saySomeThing();
+    child.sayParent();
 
-    var c1 = new Child('xiaoming', 10, 8);
-    console.log(c1); //Child { name="xiaoming", age=10, height=170, 更多...}
-    console.log(c1.walk()); //Child { name="xiaoming", age=10, height=170, 更多...}
-    console.log(c1.say()); //Child { name="xiaoming", age=10, height=170, 更多...}
 
-    console.log(navigator);
-    console.info(c1.hasOwnProperty('age'));
-    console.log(document.Browser);
 
-    var myArr = [1,2,3]
-    for(var j in myArr){
-        console.log(myArr[j]);
-        console.log(j);
-        console.log(typeof j);
-    }
+        console.info('-------another method-----------');
+        function Parent1(name, age) {
+            this.name = name;
+            this.age = age;
+            this.height = 180;
+        }
 
-    function P1(){
-        this.name ="test";
-    }
-    var p = new P1();
-    p.age =1;
-    console.log(p.hasOwnProperty('name'));
-    console.log(p.hasOwnProperty('age'));
+        Parent1.prototype.say = function () {
+            console.log('hi...');
+        };
+        function Parent2(name, age, weight) {
+            this.name1 = name;
+            this.weight = weight;
+            this.height = 170;
+            this.skin = 'yellow';
+        }
+
+        Parent2.prototype.walk = function () {
+            console.log('walk...');
+        };
+
+        function Child2(name, age, weight) {
+            Parent1.call(this, name, age);
+            Parent2.call(this, name, age, weight);
+        }
+
+        for (var i in Parent1.prototype) {
+            console.log(Parent1.prototype[i]);
+            Child2.prototype[i] = Parent1.prototype[i];
+        }
+        for (i in Parent2.prototype) {
+            console.log(Parent2.prototype[i]);
+            Child2.prototype[i] = Parent2.prototype[i]
+        }
+
+        var c1 = new Child2('xiaoming', 10, 8);
+        console.log(c1); //Child { name="xiaoming", age=10, height=170, 更多...}
+        console.log(c1.walk()); //Child { name="xiaoming", age=10, height=170, 更多...}
+        console.log(c1.say()); //Child { name="xiaoming", age=10, height=170, 更多...}
+
+        console.log(navigator);
+        console.info(c1.hasOwnProperty('age'));
+        console.log(document.Browser);
+
+        var myArr = [1, 2, 3]
+        for (var j in myArr) {
+            console.log(myArr[j]);
+            console.log(j);
+            console.log(typeof j);
+        }
+        function P2(){
+            this.height ='123';
+        }
+
+        function P1() {
+            this.name = "test";
+        }
+        P1.prototype = new P2();
+        var p = new P1();
+        p.age = 1;
+        console.log(p.hasOwnProperty('name'));//true  因为p 就是P1new 出来的，所以不是在原型链上，因而是true
+        console.log(p.hasOwnProperty('age'));//true
+        console.log(p.hasOwnProperty('height'));//false
+        console.log(p.height);//123// 这就是原型链上的属性
+
+
 
 
 </script>

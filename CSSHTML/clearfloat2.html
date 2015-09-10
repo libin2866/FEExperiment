@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .dib{
+            font-size: 0;
+            overflow: hidden;
+            border: 1px solid #ededed;
+        }
+        .dib li{
+            font-size: 16px;;
+            display: inline-block;
+            border: 1px solid #00ff00;
+            /*margin-left:-0.25em ;*/
+        }
+
+        .float{
+            border: 1px solid #ededed;
+            /*overflow: hidden;*/
+        }
+        .float li{
+            float: left;
+            border: 1px solid #00ff00;
+            list-style: none;
+        }
+        /*.float li:last-child:after{*/
+            /*clear: both;*/
+        /*}*/
+
+
+
+    </style>
+</head>
+<body>
+<ul class="dib">
+    <li>item1</li><li>item2</li>
+    <li>item3</li>
+    <li>item4</li>
+    <li>item5</li>
+</ul>
+
+<ul class="float">
+    <li>item1</li><li>item2</li>
+    <li>item3</li>
+    <li>item4</li>
+    <li>item5</li>
+</ul>
+
+</body>
+</html>

@@ -17,6 +17,7 @@
         descriptor:The descriptor for the property being defined or modified.必须是[configurable,enumerable,writable,value]其中之一
     
     注意：一旦把属性设置成不可配置，就无法改为可配置了。
+    
 #### 访问器属性
     [[Configurable]]:可否通过delete 删除/修改属性的特性或者能否把属性修改为数据属性
     [[Enumerable]]:能否通过for-in 循环返回属性
