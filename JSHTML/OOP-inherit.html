@@ -53,78 +53,125 @@
         }
     }
 
-        Child.prototype = new Parent();
+    Child.prototype = new Parent();
     // Child.prototype.constructor = Parent;
     var child = new Child("张");
     child.saySomeThing();
     child.sayParent();
 
 
+    console.info('-------another method-----------');
+    function Parent1(name, age) {
+        this.name = name;
+        this.age = age;
+        this.height = 180;
+    }
 
-        console.info('-------another method-----------');
-        function Parent1(name, age) {
-            this.name = name;
-            this.age = age;
-            this.height = 180;
-        }
+    Parent1.prototype.say = function () {
+        console.log('hi...');
+    };
+    function Parent2(name, age, weight) {
+        this.name1 = name;
+        this.weight = weight;
+        this.height = 170;
+        this.skin = 'yellow';
+    }
 
-        Parent1.prototype.say = function () {
-            console.log('hi...');
+    Parent2.prototype.walk = function () {
+        console.log('walk...');
+    };
+
+    function Child2(name, age, weight) {
+        Parent1.call(this, name, age);
+        Parent2.call(this, name, age, weight);
+    }
+
+    for (var i in Parent1.prototype) {
+        console.log(Parent1.prototype[i]);
+        Child2.prototype[i] = Parent1.prototype[i];
+    }
+    for (i in Parent2.prototype) {
+        console.log(Parent2.prototype[i]);
+        Child2.prototype[i] = Parent2.prototype[i]
+    }
+
+    var c1 = new Child2('xiaoming', 10, 8);
+    console.log(c1); //Child { name="xiaoming", age=10, height=170, 更多...}
+    console.log(c1.walk()); //Child { name="xiaoming", age=10, height=170, 更多...}
+    console.log(c1.say()); //Child { name="xiaoming", age=10, height=170, 更多...}
+
+    console.log(navigator);
+    console.info(c1.hasOwnProperty('age'));
+    console.log(document.Browser);
+
+    var myArr = [1, 2, 3]
+    for (var j in myArr) {
+        console.log(myArr[j]);
+        console.log(j);
+        console.log(typeof j);
+    }
+    function P2() {
+        this.height = '123';
+    }
+
+    function P1() {
+        this.name = "test";
+    }
+    P1.prototype = new P2();
+    var p = new P1();
+    p.age = 1;
+    console.log(p.hasOwnProperty('name'));//true  因为p 就是P1new 出来的，所以不是在原型链上，因而是true
+    console.log(p.hasOwnProperty('age'));//true
+    console.log(p.hasOwnProperty('height'));//false
+    console.log(p.height);//123// 这就是原型链上的属性
+
+    function A() {
+        this.name = "A";
+    }
+    function B(obj) {
+        this.type = "B";
+        this.c = obj.c;
+
+    }
+    B.prototype = new A();
+    var b = new B({c: "c"});
+
+    console.log(B.prototype.constructor);
+    console.log(A.constructor);
+
+    console.log(b.c);//"c"
+    console.log(b.name);//"B"
+    console.log(b.type);//"A"
+
+    B.prototype.newAb = "newAb";
+    console.log(b.newAb);
+
+    function create100(){
+        var arr= [];
+        for (var i =0; i<10;++i){
+           arr.push( Math.round(Math.random()*100));
         };
-        function Parent2(name, age, weight) {
-            this.name1 = name;
-            this.weight = weight;
-            this.height = 170;
-            this.skin = 'yellow';
-        }
-
-        Parent2.prototype.walk = function () {
-            console.log('walk...');
-        };
-
-        function Child2(name, age, weight) {
-            Parent1.call(this, name, age);
-            Parent2.call(this, name, age, weight);
-        }
-
-        for (var i in Parent1.prototype) {
-            console.log(Parent1.prototype[i]);
-            Child2.prototype[i] = Parent1.prototype[i];
-        }
-        for (i in Parent2.prototype) {
-            console.log(Parent2.prototype[i]);
-            Child2.prototype[i] = Parent2.prototype[i]
-        }
-
-        var c1 = new Child2('xiaoming', 10, 8);
-        console.log(c1); //Child { name="xiaoming", age=10, height=170, 更多...}
-        console.log(c1.walk()); //Child { name="xiaoming", age=10, height=170, 更多...}
-        console.log(c1.say()); //Child { name="xiaoming", age=10, height=170, 更多...}
-
-        console.log(navigator);
-        console.info(c1.hasOwnProperty('age'));
-        console.log(document.Browser);
-
-        var myArr = [1, 2, 3]
-        for (var j in myArr) {
-            console.log(myArr[j]);
-            console.log(j);
-            console.log(typeof j);
-        }
-        function P2(){
-            this.height ='123';
-        }
-
-        function P1() {
-            this.name = "test";
-        }
-        P1.prototype = new P2();
-        var p = new P1();
-        p.age = 1;
-        console.log(p.hasOwnProperty('name'));//true  因为p 就是P1new 出来的，所以不是在原型链上，因而是true
-        console.log(p.hasOwnProperty('age'));//true
-        console.log(p.hasOwnProperty('height'));//false
-        console.log(p.height);//123// 这就是原型链上的属性
+        arr.sort();
+        return arr;
+    }
+    console.log(create100());
+//    ajax
+//
+//    var xmlhttp ;
+//    if(window.XMLHttpRequest){
+//        xmlhttp = new XMLHttpRequest();
+//    }else{
+//        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+//    }
+//    xmlhttp.onreadystatechange = function () {
+//        if(xmlhttp.readyState ==4 ){
+//            if(xmlhttp.status>200&&xmlhttp.status<300 ||xmlhttp.status==304 ){
+//                alert(xmlhttp.responseText);
+//            }
+//        }
+//    }
+//    xmlhttp.open('get','test.php',true);
+//    xmlhttp.send(null);
 
 
 

@@ -20,10 +20,19 @@
             border: 1px solid #ededed;
             /*overflow: hidden;*/
         }
+
         .float li{
             float: left;
             border: 1px solid #00ff00;
             list-style: none;
+        }
+
+        .clearfix:after{
+            content: " ";
+            display: block;
+            height: 0;
+            clear: both;
+            /*visibility: hidden;若设置content 不是空格 则需要这个来隐藏内容*/
         }
         /*.float li:last-child:after{*/
             /*clear: both;*/
@@ -41,7 +50,7 @@
     <li>item5</li>
 </ul>
 
-<ul class="float">
+<ul class="float clearfix">
     <li>item1</li><li>item2</li>
     <li>item3</li>
     <li>item4</li>

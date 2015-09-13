@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding-top: 30px;;
+        }
+
+        .box {
+            overflow: hidden;
+        }
+
+        .col1 {
+            float: left;
+            border: 1px solid #ededed;
+            background: #00ff00;
+            margin-bottom: -1000px; /*视情况设置为大的值，这里仅为演示用*/
+            padding-bottom: 1000px;
+            height: 100%;
+        }
+
+        .col2 {
+            float: left;
+            border: 1px solid #ededed;
+            background: #2595e5;
+            margin-bottom: -1000px;
+            padding-bottom: 1000px;
+            height: 100%;
+        }
+
+        table {
+            width: 600px;
+            margin: 0px auto;
+            /*font:Georgia 11px;*/
+            color: #333333;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        table td {
+            border: 1px solid #f00;
+            width: 100px;
+            height: 30px;
+        }
+
+        .warp {
+            width: 960px;
+            margin: 15px auto;
+            padding: 5px 0;
+            background: #333;
+        }
+
+        .menu {
+            float: left;
+            width: 100%;
+        }
+
+        .flow1 {
+            float: left;
+            left: 50%;
+            margin: 0 auto;
+            background: #ededed;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="col1">
+        This is col1<br/>col1<br/>brbrbr<br/>
+        This is col1<br/>col1<br/>brbrbr<br/>
+        This is col1<br/>col1<br/>brbrbr<br/>
+        This is col1<br/>col1<br/>brbrbr<br/>
+        This is col1<br/>col1<br/>brbrbr<br/>
+    </div>
+    <div class="col2">
+        This is col2
+    </div>
+</div>
+
+<table>
+    <tr>
+        <td>codezone</td>
+        <td>codezone</td>
+        <td>codezone</td>
+    </tr>
+    <tr>
+        <td>codezone</td>
+        <td>codezone</td>
+        <td>codezone</td>
+    </tr>
+</table>
+<div class="warp">
+    <div class="menu">
+        <div class="flow1">This is flow</div>
+    </div>
+</div>
+</body>
+</html>

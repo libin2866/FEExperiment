@@ -11,6 +11,14 @@
 //    ||优先级低于&&
     console.log(false&&false||true&&true);//true 相对于  (flase&&false)||(true&&true)
 
+function F(){
+    return function () {
+        return this;
+    }
+}
+    console.log(F());
+    var f = new F();
+console.log(f());
 </script>
 </body>
 </html>

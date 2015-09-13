@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <title>居中的菜单</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        html{
+            height:100%;
+        }
+        body{
+            text-align:center;
+            height:100%;
+        }
+        .warp{
+            width:960px;
+            margin:15px auto;
+            padding:5px 0;
+            background:#333;
+        }
+        .menu{
+            float: left;
+            width:100%;
+            overflow:hidden;
+        }
+        .menu ul{
+            font: 12px/30px "Times New Roman", Times, serif;
+            float:left;
+            left:50%;
+            margin:0 auto;
+            position:relative;
+        }
+        .menu ul li{
+            float:left;
+            position:relative;
+            right:50%;
+            margin-left:2px;
+        }
+        .menu ul li a{
+            display:block;
+            padding:0 15px;
+            text-decoration:none;
+            color:#f30;
+            background:#eee;
+        }
+        .menu ul li a:hover{
+            background:#08f;
+            color:#fff;
+        }
+        .clearfix:after{
+            content: ".";
+            display: block;
+            height:0;
+            clear:both;
+            visibility:hidden;
+        }
+        .clearfix{
+            zoom:1;
+        }
+    </style>
+</head>
+<body>
+<div class="warp clearfix">
+    <div class="menu">
+        <ul>
+            <li><a href="#">源码爱好者</a></li>
+            <li><a href="#">网页特效</a></li>
+            <li><a href="#">最新更新</a></li>
+            <li><a href="#">源码下载</a></li>
+            <li><a href="#">ASP</a></li>
+            <li><a href="#">PHP</a></li>
+            <li><a href="#">ASP.NET</a></li>
+            <li><a href="#">JQUERY</a></li>
+            <li><a href="#">AJAX</a></li>
+            <li><a href="#">EXTJS</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

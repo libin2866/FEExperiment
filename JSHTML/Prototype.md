@@ -1,7 +1,33 @@
 #All About Prototype
 
-##Prototype 继承
+##Inheritance 继承
 
+###Propertype chain
+        function A(){
+            this.name = "A";
+        }
+        function B(){
+            this.type = "B";
+        }
+        B.prototype = new A();
+        var b = new B({c:"c"});
+        console.log(b.c);//c
+        --------------------
+        function Father(){}; 
+        Father.prototype.familyName = 'Good';
+          function Child(){}; 
+        Child.prototype = new Father();  
+        var c = new Child(); 
+        console.log(c.familyName);    // 'Good'
+###constructor
+        function Father(){  
+            this.familyName = 'Good'; 
+         };
+          function Child(){  
+            Father.call(this); 
+         };  
+        var c = new Child();
+         console.log(c.familyName);     // 'Good'
     
     
     

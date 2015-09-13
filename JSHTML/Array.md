@@ -85,4 +85,6 @@
 ####字符串与数组相互转换
     var arr = "this is a string".split(' ');
     var str = [1,2,3].join("");
+####sort()默认比较字符顺序
+    [1,3,[2,4]].sort().join('--');//"1--2,4--3"
     

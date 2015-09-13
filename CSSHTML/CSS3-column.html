@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="CSS3-column.css" type="text/css">
+    <!--<link rel="stylesheet" href="CSS3-column.css" type="text/css">-->
+    <style>
+
+        div{
+            column-count: 3;/*IE 10+*/
+            -webkit-column-count: 3;
+            column-gap: 30px;
+            -webkit-column-gap: 30px;
+            column-rule: 1px dashed black;
+            -webkit-column-rule:1px dashed black ;
+        }
+
+        .container{
+            margin: auto;
+            width: 700px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
