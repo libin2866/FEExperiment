@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="../js/lib/jquery-2.1.4.min.js" onload="alert('loaded');"></script>
+<script>
+
+//    ------异步方法一:通过回调函数------
+    (function(){
+        function A( callback){
+            setTimeout(function () {
+                console.info('------异步方法一:通过回调函数------');
+                console.log("this is A");
+                callback();
+            },1000);
+        }
+        function B(){
+            console.log("this is B");
+        }
+        function C(){
+            console.log("this is C");
+        }
+
+        A(B);
+        C();
+
+    })();
+//------异步方法2:通过事件监听(信号)------
+
+//   $(function () {
+//       function A(){
+//           setTimeout(function () {
+//               console.info('------异步方法2:通过事件监听------');
+//               console.log("This is  A");
+//               A.trigger('done');
+//           },1000);
+//       }
+//       A.on("done",B);
+//       function B(){
+//           console.log("this is B");
+//       }
+//
+//   });
+
+(function () {
+
+    function f1(){
+        var dfd = $.Deferred();
+        setTimeout(function () {
+            // f1的任务代码
+            console.info('------异步方法3:Promise------');
+            console.log("this is f1");
+            dfd.resolve();
+        }, 2000);
+        return dfd.promise();
+    }
+    function f2(){
+        console.log("this is f2");
+    }
+    f1().then(f2);
+})();
+
+
+</script>
+
+</body>
+</html>

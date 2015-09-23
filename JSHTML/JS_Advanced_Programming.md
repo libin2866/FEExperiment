@@ -46,3 +46,32 @@ _用hasOwnProperty()方法可以检测一个属性是存在于实例中，还是
 **使用for-in 循环时，返回的是所有能够通过对象访问的，可枚举(enumerated)属性，包括存在实例中的属性和存在原型中的属性；**
     [[Enumerate]]设置为false 的实例属性也会再for-in 中返回（注意！！！实例中的属性）
 
+###this
+####直接执行的函数，this 就是指向window. this 指向其他的都是函数作为某个对象的方法调用的时候。    
+    function BasicFun(name){
+        this.name = name;
+        console.log(this);
+    }
+    function ProFun(name){
+        BasicFun(name);//this -> window
+
+        BasicFun.call(this,name);//this -> {name:"I'm pro"}
+    }
+    var pro = new ProFun("I'm pro");
+    console.log(pro.name);
+    
+###margin的百分比
+    假设一个块级包含容器，宽1000px，高600px，块级子元素定义 margin:10% 5%;  margin 的 top, right, bottom, left 计算值最终是多少？
+    100px 50px 100px 50px
+**规范中注明 margin 的百分比值参照其包含块的宽度进行计算(writing-mode: horizontal-tb; 和 direction: ltr; )。**
+
+    当然，它不会这么简单，和上篇文章 keyword auto 一样，这只发生在默认的 writing-mode: horizontal-tb; 和 direction: ltr; 的情况下。
+    当书写模式变成纵向的时候，其参照将会变成包含块的高度。
+    
+    受书写模式影响的其它特性：
+    margin折叠
+    margin的keyword auto value
+    padding的百分比值
+   
+###event
+    preventDefault 并不能阻止所有行为的默认行为.查询事件对象的cancellable

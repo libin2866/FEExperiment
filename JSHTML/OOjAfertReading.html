@@ -8,17 +8,65 @@
 
 
 <script>
-//    ||优先级低于&&
-    console.log(false&&false||true&&true);//true 相对于  (flase&&false)||(true&&true)
+    //    ||优先级低于&&
+    console.log(false && false || true && true);//true 相对于  (flase&&false)||(true&&true)
 
-function F(){
-    return function () {
-        return this;
+    function F() {
+        return function () {
+            return this;
+        }
     }
-}
     console.log(F());
     var f = new F();
-console.log(f());
+    console.log(f());
+
+    function Shape(type) {
+        this.type = type;
+        this.getType = function () {
+            return this.type;
+        }
+    }
+    var shape = new Shape("rectangle");
+    console.log(shape.getType());
+    //    var shape = {
+    //        type:"shape",
+    //        getType:function(){
+    //            return this.type;
+    //        }
+    //    }
+
+
+    function Triangle(a, b, c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.type = "Triangle";
+        this.getType = function () {
+            return this.type;
+        }
+    }
+
+//    Triangle.prototype = new Shape("Triangle");
+
+    Triangle.prototype = shape;
+    Triangle.prototype.constructor = Triangle;
+    //    Triangle.prototype =  shape;
+    Triangle.prototype.getPerimeter = function () {
+        return this.a + this.b + this.c;
+    };
+
+    var t = new Triangle(1, 2, 3);
+    console.log(t.constructor);
+    console.log(shape.isPrototypeOf(t));
+    console.log(t.getType());
+
+
+    for(var i  in t){
+        if(t.hasOwnProperty(i)){
+            console.log(t[i]);
+        }
+    }
+
 </script>
 </body>
 </html>

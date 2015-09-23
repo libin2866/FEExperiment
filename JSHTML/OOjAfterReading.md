@@ -39,3 +39,9 @@
         }
         myA = myA();//打出 myA 的 function 内容，并且myA 被覆盖
         myA();
+        
+###如果想要通过原型来为某个对象添加属性，先检查一下该属性是否已经存在
+
+###重写对象的prototype 对象时，需要重置相应的constructor 属性 (P149/P154 in JS_Advanced_Programming).!!!!!
+    Triangle.prototype.constructor = Triangle
+    必须在扩展原型对象之前完成继承关系的构建

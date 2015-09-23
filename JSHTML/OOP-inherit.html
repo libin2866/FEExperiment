@@ -118,11 +118,19 @@
         this.name = "test";
     }
     P1.prototype = new P2();
+    P1.prototype.test = "new";
     var p = new P1();
     p.age = 1;
+    console.info('---hasOwnProperty-');
     console.log(p.hasOwnProperty('name'));//true  因为p 就是P1new 出来的，所以不是在原型链上，因而是true
     console.log(p.hasOwnProperty('age'));//true
     console.log(p.hasOwnProperty('height'));//false
+    console.log(p.hasOwnProperty('test'));//false
+    //    Object.defineProperty(p,'test',{
+    //        enumerable:true
+    //    })//设置之后就是true
+    console.log(p.propertyIsEnumerable('test'));
+    //    console.log(p);
     console.log(p.height);//123// 这就是原型链上的属性
 
     function A() {
@@ -146,35 +154,156 @@
     B.prototype.newAb = "newAb";
     console.log(b.newAb);
 
-    function create100(){
-        var arr= [];
-        for (var i =0; i<10;++i){
-           arr.push( Math.round(Math.random()*100));
-        };
+    function create100() {
+        var arr = [];
+        for (var i = 0; i < 10; ++i) {
+            arr.push(Math.round(Math.random() * 100));
+        }
+        ;
         arr.sort();
         return arr;
     }
     console.log(create100());
-//    ajax
-//
-//    var xmlhttp ;
-//    if(window.XMLHttpRequest){
-//        xmlhttp = new XMLHttpRequest();
-//    }else{
-//        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-//    }
-//    xmlhttp.onreadystatechange = function () {
-//        if(xmlhttp.readyState ==4 ){
-//            if(xmlhttp.status>200&&xmlhttp.status<300 ||xmlhttp.status==304 ){
-//                alert(xmlhttp.responseText);
-//            }
-//        }
-//    }
-//    xmlhttp.open('get','test.php',true);
-//    xmlhttp.send(null);
+    //    ajax
+    //
+    //    var xmlhttp ;
+    //    if(window.XMLHttpRequest){
+    //        xmlhttp = new XMLHttpRequest();
+    //    }else{
+    //        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    //    }
+    //    xmlhttp.onreadystatechange = function () {
+    //        if(xmlhttp.readyState ==4 ){
+    //            if(xmlhttp.status>200&&xmlhttp.status<300 ||xmlhttp.status==304 ){
+    //                alert(xmlhttp.responseText);
+    //            }
+    //        }
+    //    }
+    //    xmlhttp.open('get','test.php',true);
+    //    xmlhttp.send(null);
+
+    function Gadget(name, color) {
+        this.name = name;
+        this.color = color;
+        this.say = function () {
+            return this.name + " : " + this.color;
+        }
+    }
+
+    var gad = new Gadget("test", "green");
+    Gadget.prototype = {//定义了一个新的对象来覆盖原来的 prototype 导致原有的对象不能通过原型访问到新增加的对象
+        age: 25,
+        leng: 1,
+        getInfo: function () {
+            return this.age + " len:" + this.leng
+        }
+    };
+    Gadget.prototype.height = 3.1415;
+    Gadget.prototype.getHeight = function () {
+        return 3.14;
+    };
+    console.log(gad.say());//test:green
+    console.log(gad.age);//undefined
+    console.log(gad.height);//undefined
+    //    console.log(gad.getHeight());//undefined
+    var newGad = new Gadget("newGad", "red");
+    console.log(newGad.say());//newGad:red
+    console.log(newGad.age);//25
+    console.log(newGad.height);//25
+    console.log(newGad.getHeight());//25
+    console.info('-----newGad----')
+    function NewGadget(name, color) {
+        this.name = name;
+        this.color = color;
+        this.say = function () {
+            return this.name + " : " + this.color;
+        }
+    }
+
+    var myGad = new NewGadget("test", "green");
+    NewGadget.prototype.height = 3.1415926;
+    NewGadget.prototype.getHeight = function () {
+        return "new height";
+    };
+    console.log(myGad.say());//test:green
+    console.log(myGad.height);//undefined
+    console.log(myGad.getHeight());//undefined
+    var myNewGad = new NewGadget("newGad", "red");
+    console.log(myNewGad.say());//newGad:red
+    console.log(myNewGad.height);//25
+    console.log(myNewGad.getHeight());//25
 
 
+    function extend(Child, Parent) {
+        var F = function () {
+        };
+        F.prototype = Parent.prototype;
+        Child.prototype = new F();
+        Child.prototype.constructor = Child;
+        Child.uber = Parent.prototype;
+    }
+    //    document.cookie="NSLibin's cookie";
+    //    document.cookie={
+    //        name:"test",
+    //        age:"test"
+    //    };
+    //    document.cookie;
+    //
+    //    localStorage.setItem("name","NSlibin");
+    //    localStorage.setItem("obj",{
+    //        name:"bin",
+    //        age:"24"
+    //    });
+    //    sessionStorage.setItem("tmpName","incode");
 
+    function BasicFun(name) {
+        this.name = name;
+        console.log(this);
+    }
+    function ProFun(name) {
+        BasicFun(name);
+        console.log('Profun');
+        console.log(this);
+        BasicFun.call(this, name);
+        console.log('Profun2:');
+        console.log(this);
+
+    }
+    var pro = new ProFun("I'm pro");
+    console.log(pro.name);
+
+
+    (function () {
+        var Person = function (name) {
+            this.name = name;
+        };
+        //Person.prototype = {};//这句将影响十分具有constructor属性
+        Person.prototype.getName = function () {
+            return this.name;
+        };
+
+        var Student = function (name, sex, id) {
+            this.name = name || '无名氏';
+            this.sex = sex || '不明';
+            this.id = id || '未填'; //学号
+        };
+        //相当于将其prototype复制了一次，若是包含constructor的话将指向Person
+        Student.prototype = new Person();
+        Student.prototype.getId = function () {
+            return this.id;
+        }
+        var y = new Person();
+        var s = new Student;
+        var s1 = y instanceof Person;
+        var s2 = s instanceof Student;
+        var s3 = s instanceof Person;
+        var s4 = Student.prototype.constructor === Person;
+        var s5 = Student.constructor === Person;
+        var s6 = Student.constructor === Function;
+        console.log("This is  students")
+        console.log(Student.constructor);
+        var s = '';
+    })();
 
 </script>
 </body>

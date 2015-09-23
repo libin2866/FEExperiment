@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+     题目描述
+     计算给定数组 arr 中所有元素的总和
+     输入描述:
+     数组中的元素均为 Number 类型
+     输入例子:
+     sum([ 1, 2, 3, 4 ])
+     输出例子:
+     10
+     */
+    function sum(arr) {
+        if (!arr.length) {
+            return 0;
+        }
+        var sumNum = 0;
+        for (var i = 0; i < arr.length; ++i) {
+            sumNum += arr[i];
+        }
+        return sumNum;
+    }
+    //    console.log(sum([1, 2, 3, 4]));
+    /**
+     * 移除数组 arr 中的所有值与 item 相等的元素。不要直接修改数组 arr，结果返回新的数组
+     输入例子:
+     remove([1, 2, 3, 4, 2], 2)
+     输出例子:
+     [1, 3, 4]
+     */
+//    function remove(arr, item) {
+//        if(!arr.length){
+//            return [];
+//        }
+//        var newArr =[];
+//        for(var i=0;i<arr.length;++i){
+//            if(item!=arr[i]){
+//                newArr.push(arr[i])
+//            }
+//        }
+//        return newArr;
+//    }
+    function remove(arr, item) {
+        if (!arr.length) {
+            return 0;
+        }
+
+        for (var i = 0; i < arr.length; ++i) {
+            if (item == arr[i]) {
+                arr.splice(i, 1);
+                i--;
+            }
+        }
+        return arr;
+    }
+
+    //    console.log(remove([2, 1, 2, 2, 2, 4, 2, 2], 2));
+
+
+    /**
+     * 在数组 arr 末尾添加元素 item。不要直接修改数组 arr，结果返回新的数组
+     输入例子:
+     append([1, 2, 3, 4],  10)
+     输出例子:
+     [1, 2, 3, 4, 10]
+     */
+    function append(arr, item) {
+//        var newArr=[];
+//        for(var i=0;i<arr.length;++i){
+//            newArr[i]=arr[i];
+//        }
+        //复制数组!!!!!!!!!!!!!!!!!!!!!!!!!!
+        var newArr = arr.slice(0);
+        newArr.push(item);
+        return newArr;
+
+    }
+    //    console.log(append([1, 2, 3, 4], 10));
+
+    /**
+     * 在数组 arr 开头添加元素 item。不要直接修改数组 arr，结果返回新的数组
+     输入例子:
+     prepend([1, 2, 3, 4], 10)
+     输出例子:
+     [10, 1, 2, 3, 4]
+
+
+     return [item].concat(arr);即可。。。。
+
+     */
+    function prepend(arr, item) {
+        var newArr = [];
+        newArr.push(item);
+        for (var i = 0; i < arr.length; ++i) {
+            newArr[i + 1] = arr[i];
+        }
+        return newArr;
+    }
+    function prepend2(arr, item) {
+        var newArr = [];
+        newArr.push(item);
+        return newArr.concat(arr);
+    }//concat 并没有修改原数组
+    //    console.log(prepend2([1, 2, 3, 4], 10));
+    /**
+     *删除数组 arr 第一个元素。不要直接修改数组 arr，结果返回新的数组
+     输入例子:
+     curtail([1, 2, 3, 4])
+     输出例子:
+     [2, 3, 4]
+     */
+    function curtail(arr) {
+        var newArr = [];
+        for (var i = 1; i < arr.length; ++i) {
+            newArr[i - 1] = arr[i];
+        }
+        return newArr;
+    }
+    function curtail2(arr) {
+        var a = arr.slice(0);
+        a.shift();
+        return a;//去掉第一个
+    }
+    //    console.log(curtail2([1, 2, 3, 4]));
+    /**
+     * 合并数组 arr1 和数组 arr2。不要直接修改数组 arr，结果返回新的数组
+     输入例子:
+     concat([1, 2, 3, 4], ['a', 'b', 'c', 1])
+     输出例子:
+     [1, 2, 3, 4, 'a', 'b', 'c', 1]
+     */
+    function concat(arr1, arr2) {
+        var arr = [];
+        arr = arr1.concat(arr2);
+        return arr;
+    }
+    //    console.log(concat([1, 2, 3, 4], ['a', 'b', 'c', 1]));
+    /**
+     * 在数组 arr 的 index 处添加元素 item。不要直接修改数组 arr，结果返回新的数组
+     输入例子:
+     insert([1, 2, 3, 4], 'z', 2)
+     输出例子:
+     [1, 2, 'z', 3, 4]
+     */
+    function insert(arr, item, index) {
+        var newArr = arr.slice(0);
+        newArr.splice(index, 0, item);
+        return newArr;
+    }
+    //    console.log(insert([1, 2, 3, 4], 'z', 2));
+    /**
+     * 题目描述
+     统计数组 arr 中值等于 item 的元素出现的次数
+     输入例子:
+     count([1, 2, 4, 4, 3, 4, 3], 4)
+     输出例子:
+     3
+     */
+    function count(arr, item) {
+        var cou = 0;
+        for (var i = 0; i < arr.length; ++i) {
+            if (item == arr[i]) {
+                cou++;
+            }
+        }
+        return cou;
+        // arr.toString().match(new RegExp(item,"g")).length;
+
+    }
+    //    console.log(count([1, 2, 4, 4, 3, 4, 3], 4));
+
+    /**
+     * 找出数组 arr 中重复出现过的元素
+     输入例子:
+     duplicates([1, 2, 4, 4, 3, 3, 1, 5, 3]).sort()
+     输出例子:
+     [1, 3, 4]
+     */
+    function duplicates(arr) {
+
+        var obj = {};
+        var newArr = []
+        for (var i = 0; i < arr.length; ++i) {
+            if (!obj[arr[i]]) {
+                obj[arr[i]] = 1;
+            } else {
+                obj[arr[i]]++;
+                if (obj[arr[i]] == 2) {
+                    newArr.push(arr[i]);
+                }
+            }
+        }
+//        for(var j in obj){
+//            if(obj[j]>1){
+//                newArr.push(parseInt(j));
+//            }
+//        }
+        return newArr;
+    }
+    //    console.log( duplicates([1, 2, 4, 4, 3, 3, 1, 5, 3]).sort());
+
+    /*
+     为数组 arr 中的每个元素求二次方。不要直接修改数组 arr，结果返回新的数组
+     输入例子:
+     square([1, 2, 3, 4])
+     输出例子:
+     [1, 4, 9, 16]
+     */
+
+    function square(arr) {
+        if (!arr.length) {
+            return 0;
+        }
+        var newArr = [];
+//        for(var i =0;i<arr.length;++i){
+//            newArr[i]=arr[i]*arr[i];
+//        }
+
+        arr.forEach(function (e) {
+            newArr.push(e * e);
+        });
+        return newArr;
+
+    }
+    //    console.log( square([1, 2, 3, 4]));
+    /*
+     在数组 arr 中，查找值与 item 相等的元素出现的位置
+     输入例子:
+     findAllOccurrences('abcdefabc'.split(''), 'a').sort()
+     输出例子:
+     [0, 6]
+     */
+    function findAllOccurrences(arr, target) {
+
+        var pos = [];
+        for (var i = 0; i < arr.length; ++i) {
+            if (target == arr[i]) {
+                pos.push(i);
+            }
+        }
+        return pos;
+
+    }
+    //    console.log( findAllOccurrences('abcdefabc'.split(''), 'a').sort());
+    /*
+
+     */
+    function parse2Int(num) {
+        return parseInt(num, 10);
+    }
+    //    console.log(parse2Int('12'));
+    //    console.log(parse2Int('12px'));
+    //    console.log(parse2Int('0x12'));
+    /*
+     实现一个打点计时器，要求
+     1、从 start 到 end（包含 start 和 end），每隔 100 毫秒 console.log 一个数字，每次数字增幅为 1
+     2、返回的对象中需要包含一个 cancel 方法，用于停止定时操作
+     3、第一个数需要立即输出
+     */
+    function count(start, end) {
+        console.log(start++);
+        var inter = setInterval(function () {
+            if (start <= end) {
+                console.log(start++);
+            } else {
+                clearInterval(inter);
+            }
+        }, 100);
+        return {
+            cancel: function () {
+                clearInterval(inter)
+            }
+        }
+
+    }
+    //    count(10, 20);
+    //    count()
+    /*
+     实现 fizzBuzz 函数，参数 num 与返回值的关系如下：
+     1、如果 num 能同时被 3 和 5 整除，返回字符串 fizzbuzz
+     2、如果 num 能被 3 整除，返回字符串 fizz
+     3、如果 num 能被 5 整除，返回字符串 buzz
+     4、如果参数为空或者不是 Number 类型，返回 false
+     5、其余情况，返回参数 num
+     输入例子:
+     fizzBuzz(15)
+     输出例子:
+     fizzbuzz
+     */
+    function fizzBuzz(num) {
+        if (!num || typeof num != "number") {
+            return false;
+        }
+        if (num % 3 == 0 && num % 5 == 0) {
+            return "fizzbuzz";
+        }
+        if (num % 3 == 0 && num % 5 != 0) {
+            return "fizz";
+        }
+        if (num % 3 != 0 && num % 5 == 0) {
+            return "buzz";
+        }
+        if (num % 3 != 0 && num % 5 != 0) {
+            return num;
+        }
+    }
+    //    console.log( fizzBuzz(15));
+    //    console.log( fizzBuzz());
+    /*
+     将数组 arr 中的元素作为调用函数 fn 的参数
+     输入例子:
+     argsAsArray(function (greeting, name, punctuation) {return greeting + ', ' + name + (punctuation || '!');}, ['Hello', 'Ellie', '!'])
+     输出例子:
+     Hello, Ellie!
+     */
+    function argsAsArray(fn, arr) {
+        return fn.apply(null, arr);
+//        return fn.apply(this, arr);
+    }
+    //    console.log(argsAsArray(function (greeting, name, punctuation) {
+    //                return greeting + ', ' + name + (punctuation || '!');
+    //            }, ['Hello', 'Ellie', '!'])
+    //    );
+    /*
+     将函数 fn 的执行上下文改为 obj 对象
+     输入例子:
+     speak(function () {return this.greeting + ', ' + this.name + '!!!';}, {greeting: 'Hello', name: 'Rebecca'})
+     输出例子:
+     Hello, Rebecca!!!
+     */
+    function speak(fn, obj) {
+        return fn.call(obj);
+    }
+    //    console.log(     speak(function () {return this.greeting + ', ' + this.name + '!!!';}, {greeting: 'Hello', name: 'Rebecca'})
+    //    );
+    /*
+     实现函数 functionFunction，调用之后满足如下条件：
+     1、返回值为一个函数 f
+     2、调用返回的函数 f，返回值为按照调用顺序的参数拼接，拼接字符为英文逗号加一个空格，即 ', '
+     3、所有函数的参数数量为 1，且均为 String 类型
+     输入例子:
+     functionFunction('Hello')('world')
+     输出例子:
+     Hello, world
+     */
+    function functionFunction(str) {
+        return function (str2) {
+            return str + ", " + str2;
+        }
+    }
+    //    console.log(functionFunction('Hello')('world'));
+    /*
+     实现函数 makeClosures，调用之后满足如下条件：
+     1、返回一个函数数组 result，长度与 arr 相同
+     2、运行 result 中第 i 个函数，即 result[i]()，结果与 fn(arr[i]) 相同
+     输入例子:
+     var arr = [1, 2, 3]; var square = function (x) { return x * x; }; var funcs = makeClosures(arr, square); funcs[1]();
+     输出例子:
+     4
+     */
+    function makeClosures3(arr, fn) {
+        var newArr = [];
+        for (var i = 0; i < arr.length; ++i) {
+            newArr.push(function (num) {
+                return function () {
+                    return fn(num)
+                }
+            }(arr[i]));
+        }
+        return newArr;
+    }
+    function makeClosures(arr, fn) {
+        var newArr = [];
+        for (var i = 0; i < arr.length; ++i) {
+            newArr.push(function (pos) {
+                return function () {
+                    return fn(pos);
+                }
+            }(arr[i]))
+        }
+        return newArr;
+    }
+    function makeClosure2s(arr, fn) {
+        var result = [];
+        arr.forEach(function (e) {
+            result.push(function (num) {
+                return function () {
+                    return fn(num);
+                };
+            }(e));
+        });
+        return result;
+    }
+    //    var arr = [1, 2, 3];
+    //    var square = function (x) {
+    //        return x * x;
+    //    };
+    //    var funcs = makeClosures(arr, square);
+    //    console.log(funcs);
+    //    console.log(funcs[1]());
+    /*
+     已知函数 fn 执行需要 3 个参数。请实现函数 partial，调用之后满足如下条件：
+     1、返回一个函数 result，该函数接受一个参数
+     2、执行 result(str3) ，返回的结果与 fn(str1, str2, str3) 一致
+     输入例子:
+
+     var sayIt = function(greeting, name, punctuation) {     return greeting + ', ' + name + (punctuation || '!'); };  partial(sayIt, 'Hello', 'Ellie')('!!!');
+
+     输出例子:
+
+     Hello, Ellie!!!
+     */
+    function partial(fn, str1, str2) {
+
+        var result = function (str3) {
+
+            return fn.call(this, str1, str2, str3);
+        };
+        return result;
+
+    }
+    var sayIt = function (greeting, name, punctuation) {
+        return greeting + ', ' + name + (punctuation || '!');
+    };
+
+    //    console.log(partial(sayIt, 'Hello', 'Ellie')('!!!'));
+
+    /*
+     函数 useArguments 可以接收 1 个及以上的参数。请实现函数 useArguments，返回所有调用参数相加后的结果。本题的测试参数全部为 Number 类型，不需考虑参数转换。
+     输入例子:
+     useArguments(1, 2, 3, 4)
+     输出例子:
+     10
+     */
+    function useArguments() {
+        var sum = 0;
+        for (var i in arguments) {
+            sum += arguments[i];
+        }
+        return sum;
+
+    }
+    //    console.log( useArguments(1, 2, 3, 4));
+    /*
+     实现函数 callIt，调用之后满足如下条件
+     1、返回的结果为调用 fn 之后的结果
+     2、fn 的调用参数为 callIt 的第一个参数之后的全部参数
+     输入例子:
+     var a = 1; var b = 2; var test = function (first, second) { return first === a && second === b;}; callIt(test, a, b);
+     输出例子:
+     true
+     */
+
+    function callIt(fn) {
+        var newArr = Array.prototype.slice.call(arguments,1);
+        return fn.apply(this,newArr);
+    }
+//    var a = 1;
+//    var b = 2;
+//    var test = function (first, second) {
+//        return first === a && second === b;
+//    };
+
+//    console.log(callIt(test, a, b))//true
+
+    /*
+     实现函数 partialUsingArguments，调用之后满足如下条件：
+     1、返回一个函数 result
+     2、调用 result 之后，返回的结果与调用函数 fn 的结果一致
+     3、fn 的调用参数为 partialUsingArguments 的第一个参数之后的全部参数以及 result 的调用参数
+     输入例子:
+     var a = 1; var b = 2; var c = 3; var d = 4;var test = function (first, second, third, forth) {return first + second + third + forth;};partialUsingArguments(test, a, b)(c, d);
+     输出例子:
+     10
+     */
+    function partialUsingArguments(fn) {
+        var args = Array.prototype.slice.call(arguments,1);
+        var result = function () {
+            var args2 = Array.prototype.slice.call(arguments,0);
+            return fn.apply(this,args.concat(args2));
+        };
+        return result;
+    }
+    var a = 1; var b = 2; var c = 3; var d = 4;
+    var test = function (first, second, third, forth) {return first + second + third + forth;};
+
+
+    console.log( partialUsingArguments(test, a, b)(c, d));
+
+    var data = {a: 1, b: 2, c: 3, d: 4};
+    console.log(Object.keys(data).filter(function(x) { return data[x]>2 ;}))
+
+    /**
+     *@desc: fibonacci
+     *@param: count {Number}
+     *@return: result {Number} 第count个fibonacci值，计数从0开始
+     fibonacci数列为：[1, 1, 2, 3, 5, 8, 13, 21, 34 …]
+     则getNthFibonacci(0)返回值为1
+     则getNthFibonacci(4)返回值为5
+     */
+    function getNthFibonacci(count) {
+        if(count <= 1){
+            return 1;
+        }
+            return getNthFibonacci(count-1)+getNthFibonacci(count-2);
+    }
+    console.log(getNthFibonacci(4));
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

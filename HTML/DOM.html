@@ -119,14 +119,14 @@
     console.log(arrT);
 
     var foo = 1;
-    function main() {
+    function Main() {
         console.log(foo);
         var foo = 2;
         console.log(this.foo);
         this.foo = 3;
     }
-    main();//undefined,1
-    new main();//undefined,undefined
+    Main();//undefined,1
+    new Main();//undefined,undefined
 
 
     var newfoo = {
