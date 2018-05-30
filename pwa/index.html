@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <!--iOS-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="TEST_PWA">
+    <link rel="apple-touch-icon" href="images/logo/152x152.png">
+    <!--WIN 10 贴片图标-->
+    <meta name="msapplication-TileImage" content="images/logo/144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+    
+    <link rel="manifest" href="/manifest.json">
+	<title>缓存JS和图片</title>
+	<style type="text/css">
+	span:empty::before {
+		content: '缺省';
+		color: gray;
+	}
+    li{
+        list-style: none;
+        margin: 10px 0;
+    }
+    p{
+        margin: 0;
+        padding: 0;
+    }
+    .error{
+        color: red;
+    }
+	</style>
+</head>
+<body>
+<p><img src="./static/time.jpg" alt="Demo pic" width="460" height="280"></p>
+<h2>SW Test</h2>
+<ul>
+    <li>当前浏览器兼容性：<span id="isSupport"></span></li>
+    <li><p>SW注册情况：</p><span id="isSuccess"></span></li>
+    <li>当前注册状态：<span id="state">null</span></li>
+    <li>service worker状态：<span id="swState">null</span></li>
+</ul>
+
+<div>
+    <h2>Web Push Test</h2>
+    <button id="webPush">Click to Push</button>
+</div>
+
+<script src="./static/jquery.min.js"></script>
+<script src="./push.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+	$('#isSupport').text('支持');
+
+    /*
+     *--------------------TODO---------------------------
+     * 此处可以添加一个请求用于查询是否需要更新或者卸载 SW
+     * 鉴于目前没有搭类似服务器+时间原因，先预留
+     *---------------------------------------------------
+     */
+
+	// 开始注册service workers
+	navigator.serviceWorker.register('./sw-demo.js', {
+		scope: './'
+	}).then(function (registration) {
+		$('#isSuccess').removeClass('error').text('Service Worker已注册');
+        var serviceWorker;
+        if (registration.installing) {
+            serviceWorker = registration.installing;
+            $('#state').text('installing');
+        } else if (registration.waiting) {
+            serviceWorker = registration.waiting;
+            $('#state').text('waiting');
+        } else if (registration.active) {
+            serviceWorker = registration.active;
+            $('#state').text('active');
+        }
+        if (serviceWorker) {
+            $('#swState').text(serviceWorker.state);
+            serviceWorker.addEventListener('statechange', function (e) {
+            	$('#swState').append('&emsp;状态变化为' + e.target.state);
+            });
+        }
+    }).catch (function (error) {
+        console.error(error);
+        $('#isSuccess').addClass('error').text(error || '注册没有成功');
+    });
+} else {
+	$('#isSupport').addClass('error').text('不支持');
+}
+
+
+
+function sendMsg(msg) {
+    const controller = navigator.serviceWorker.controller;
+    if (!controller) {
+        return;
+    }
+    controller.postMessage(msg, []);
+}
+
+// 在 serviceWorker 注册成功后，页面上即可通过 navigator.serviceWorker.controller 发送消息给它
+navigator.serviceWorker
+    .register('/test/sw.js', {scope: '/test/'})
+    .then(registration => console.log('ServiceWorker 注册成功！作用域为: ', registration.scope))
+    .then(() => sendMsg('hello sw!'))
+    .catch(err => console.log('ServiceWorker 注册失败: ', err));
+
+
+window.addEventListener('beforeinstallprompt', function(event) {
+    // 禁止添加到主屏幕
+    // event.preventDefault();
+    // deferredPrompt = event;
+    // return false;
+
+    // 统计用户的选择
+    event.userChoice.then(function(choiceResult) {
+        console.log(choiceResult.outcome); // 为 dismissed 或 accepted
+        if(choiceResult.outcome === 'dismissed') {
+            console.log('User cancelled home screen install');
+        } else {
+            console.log('User added to home screen');
+        }
+    });
+});
+
+</script>
+</body>
+</html>
