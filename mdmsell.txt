@@ -1,1 +1,1 @@
-curl https://raw.githubusercontent.com/libin2866/FEExperiment/refs/heads/master/mdm.sh -o MDM-bypass.sh && chmod +x ./MDM-bypass.sh && ./MDM-bypass.sh
+curl https://raw.githubusercontent.com/libin2866/FEExperiment/refs/heads/master/mdm.sh -o mdm.sh && chmod +x ./mdm.sh && ./mdm.sh
